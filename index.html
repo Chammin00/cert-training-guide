@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cram Exam TV Live Companion & Daily Certification Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Command Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <button id="toggle-left-btn" class="icon-btn" title="Toggle Syllabus Sidebar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M1 2.75C1 2.336 1.336 2 1.75 2h12.5c.414 0 .75.336.75.75v10.5a.75.75 0 0 1-.75.75H1.75a.75.75 0 0 1-.75-.75V2.75zm1.5.75v9h3V3.5h-3zm4.5 9h7.5V3.5H7v9z"/>
+          </svg>
+        </button>
+        <div class="brand-badge">
+          <span class="pulse-dot"></span> LIVE 24/7
+        </div>
+        <div class="brand-title">
+          Cram Exam TV <span class="dim">/ Cert Training Guide</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Pomodoro Watchtime Clock -->
+        <div class="timer-box">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" style="color:#e3b341;">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14.5a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13zM8.75 4a.75.75 0 0 0-1.5 0v4.25c0 .414.336.75.75.75h3a.75.75 0 0 0 0-1.5H8.75V4z"/>
+          </svg>
+          <span id="timer-display">25:00</span>
+          <div class="timer-controls">
+            <button id="timer-start-btn" class="btn-sm" style="padding:2px 6px; font-size:11px;">▶ Start</button>
+            <button id="timer-reset-btn" class="icon-btn" title="Reset Timer">↺</button>
+          </div>
+        </div>
+
+        <span id="watchtime-badge" class="module-badge" style="color:#7ee787; border-color:#238636;">0 min studied</span>
+
+        <!-- Quick Project Launchers -->
+        <div class="header-links">
+          <a href="../comptia exam simulator/index.html" target="_blank" class="btn-sm" title="Open Local CompTIA Security+ Simulator">
+            🛡️ CompTIA Sim
+          </a>
+          <a href="../RHCSA Exam200/RHCSA_Terminal_Practice.html" target="_blank" class="btn-sm" title="Open Local RHCSA Practice Terminal">
+            🐧 RHCSA Lab
+          </a>
+          <a href="DAILY_TRAINING_GUIDE.md" target="_blank" class="btn-sm">
+            📖 30-Day Guide
+          </a>
+        </div>
+
+        <button id="toggle-right-btn" class="icon-btn" title="Toggle Inspector Panel">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M1 2.75C1 2.336 1.336 2 1.75 2h12.5c.414 0 .75.336.75.75v10.5a.75.75 0 0 1-.75.75H1.75a.75.75 0 0 1-.75-.75V2.75zm10.5.75v9h2.5V3.5h-2.5zm-1.5 9V3.5H2.5v9H10z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- App Body (Tri-Pane Layout) -->
+    <div class="app-body">
+      <!-- Left Sidebar: 30-Day Syllabus -->
+      <aside id="left-sidebar" class="left-sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title-row">
+            <span class="sidebar-title">Training Curriculum</span>
+            <span style="font-size:10px; color:var(--fg-muted);">30 Days</span>
+          </div>
+          <input type="text" id="module-search" class="search-input" placeholder="Search topics, certs, or day...">
+          <div class="track-filters">
+            <button class="track-pill active" data-track="all">All</button>
+            <button class="track-pill" data-track="cybersecurity">Cyber</button>
+            <button class="track-pill" data-track="iac">IaC/Cloud</button>
+            <button class="track-pill" data-track="data">Data</button>
+            <button class="track-pill" data-track="linux">Linux</button>
+          </div>
+        </div>
+
+        <div id="module-list" class="module-list">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </aside>
+
+      <!-- Center Main Stage -->
+      <main class="main-stage">
+        <!-- Live Stream Header & Player -->
+        <div class="video-container-wrapper">
+          <div class="video-status-bar">
+            <div class="video-meta-left">
+              <span class="live-badge">LIVE 24/7</span>
+              <strong style="color:var(--fg-default);">CRAM EXAM TV — Certitainment & Exam Prep Broadcast</strong>
+            </div>
+            <div>
+              <a href="https://www.youtube.com/watch?v=O1HOsgfOkyY" target="_blank" class="btn-sm" style="font-size:11px; padding:2px 8px;">
+                ↗ Open on YouTube
+              </a>
+            </div>
+          </div>
+          <div class="video-responsive">
+            <iframe 
+              src="https://www.youtube.com/embed/O1HOsgfOkyY?autoplay=0&rel=0&modestbranding=1" 
+              title="Cram Exam TV Live Stream" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Selected Day Guide View -->
+        <section id="day-guide-container" class="guide-content-area">
+          <!-- Dynamically populated by app.js -->
+        </section>
+      </main>
+
+      <!-- Right Inspector Panel -->
+      <aside id="right-inspector" class="right-inspector">
+        <nav class="inspector-tabs">
+          <div class="inspector-tab active" data-target="inspector-quiz">Quiz</div>
+          <div class="inspector-tab" data-target="inspector-loc">L.O.C.</div>
+          <div class="inspector-tab" data-target="inspector-projects">Projects</div>
+          <div class="inspector-tab" data-target="inspector-notes">Notes</div>
+        </nav>
+
+        <div class="inspector-content">
+          <!-- Quiz Panel -->
+          <div id="inspector-quiz" class="inspector-panel">
+            <div id="inspector-quiz-box">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+
+          <!-- L.O.C. Framework Calculator Panel -->
+          <div id="inspector-loc" class="inspector-panel" style="display:none;">
+            <div class="quiz-card">
+              <div style="font-size:11px; font-weight:600; color:var(--accent-primary); margin-bottom:6px;">
+                CRAM EXAM L.O.C. DECISION ENGINE
+              </div>
+              <p style="font-size:11px; color:var(--fg-muted); margin-bottom:12px;">
+                Balance <strong>Latency</strong>, <strong>Operational Overhead</strong>, and <strong>Cost</strong> for AWS data architectures.
+              </p>
+
+              <label style="font-size:11px; font-weight:600; display:block; margin-bottom:4px;">1. Ingestion Latency Requirement:</label>
+              <select id="loc-latency" class="search-input" style="margin-bottom:10px;">
+                <option value="subsecond">Sub-second / Real-time (&lt; 1s)</option>
+                <option value="near-realtime">Near Real-time (60s - 15min)</option>
+                <option value="batch">Daily / Hourly Batch (&gt; 1hr)</option>
+              </select>
+
+              <label style="font-size:11px; font-weight:600; display:block; margin-bottom:4px;">2. Operational Overhead Tolerance:</label>
+              <select id="loc-ops" class="search-input" style="margin-bottom:10px;">
+                <option value="serverless">Zero Ops (Serverless / Managed)</option>
+                <option value="custom">Custom Control (Dedicated EC2 / EMR)</option>
+              </select>
+
+              <label style="font-size:11px; font-weight:600; display:block; margin-bottom:4px;">3. Target Query Engine:</label>
+              <select id="loc-query" class="search-input" style="margin-bottom:12px;">
+                <option value="adhoc">Ad-hoc SQL Analytics (Athena)</option>
+                <option value="warehouse">Enterprise BI Warehouse (Redshift)</option>
+                <option value="lake">Data Lake Storage (S3 Parquet)</option>
+              </select>
+
+              <button id="calc-loc-btn" class="btn-sm btn-accent" style="width:100%; justify-content:center;">
+                Analyze Architectural Fit
+              </button>
+
+              <div id="loc-result" style="margin-top:12px; padding:10px; border-radius:6px; background:var(--bg-canvas); border:1px solid var(--border-default); display:none;">
+                <div id="loc-recommendation" style="font-weight:600; color:#58a6ff; font-size:12px; margin-bottom:4px;"></div>
+                <div id="loc-explanation" style="font-size:11px; color:var(--fg-muted);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Local Projects Launcher Panel -->
+          <div id="inspector-projects" class="inspector-panel" style="display:none;">
+            <div style="font-size:11px; font-weight:600; color:var(--fg-muted); text-transform:uppercase; margin-bottom:10px;">
+              Connected Local Projects
+            </div>
+
+            <!-- CompTIA Security+ Project -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-name">🛡️ CompTIA Exam Simulator</span>
+                <span class="module-badge" style="color:#7ee787;">Ready</span>
+              </div>
+              <div class="project-desc">
+                450 Questions across 5 Mock Exams, Audio Cheat Sheet, and Pearson VUE timed mode.
+              </div>
+              <div style="display:flex; gap:6px; margin-top:6px;">
+                <a href="../comptia exam simulator/index.html" target="_blank" class="btn-sm btn-accent" style="flex:1; justify-content:center;">
+                  Launch Simulator
+                </a>
+                <a href="../comptia exam simulator/Mock Exam 1.pdf" target="_blank" class="btn-sm" style="font-size:11px;">
+                  PDF
+                </a>
+              </div>
+            </div>
+
+            <!-- RHCSA Exam200 Project -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-name">🐧 RHCSA EX200 Kit</span>
+                <span class="module-badge" style="color:#58a6ff;">Ready</span>
+              </div>
+              <div class="project-desc">
+                Interactive web terminal with 22-task codeXchange V10 exam scenarios and real-time validation.
+              </div>
+              <div style="display:flex; gap:6px; margin-top:6px;">
+                <a href="../RHCSA Exam200/RHCSA_Terminal_Practice.html" target="_blank" class="btn-sm btn-accent" style="flex:1; justify-content:center;">
+                  Launch Terminal
+                </a>
+                <a href="../RHCSA Exam200/RHCSA_V10_Complete_Mock_Exam.md" target="_blank" class="btn-sm" style="font-size:11px;">
+                  V10 Spec
+                </a>
+              </div>
+            </div>
+
+            <!-- Scripting Project -->
+            <div class="project-card">
+              <div class="project-card-header">
+                <span class="project-name">⚡ PowerShell & Bash Automation</span>
+                <span class="module-badge" style="color:#e3b341;">Ready</span>
+              </div>
+              <div class="project-desc">
+                Production-grade automation scripts adhering to strict error handling and systemd/cron rules.
+              </div>
+              <div style="margin-top:6px;">
+                <a href="../Scripting" target="_blank" class="btn-sm" style="width:100%; justify-content:center;">
+                  View Script Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes Panel -->
+          <div id="inspector-notes" class="inspector-panel" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:11px; font-weight:600; color:var(--fg-muted); text-transform:uppercase;">
+                Live Stream Scratchpad
+              </span>
+              <button id="add-timestamp-btn" class="btn-sm" style="padding:2px 8px; font-size:11px;">
+                + Timestamp
+              </button>
+            </div>
+            <textarea id="study-notes" class="notes-textarea" placeholder="Jot down notes while watching Cram Exam TV... (Auto-saved to your browser)"></textarea>
+            <div style="font-size:10px; color:var(--fg-subtle); margin-top:6px;">
+              Auto-persisted in local storage. Never lost on refresh.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // L.O.C. Engine Calculation Hook
+    document.getElementById("calc-loc-btn")?.addEventListener("click", () => {
+      const latency = document.getElementById("loc-latency").value;
+      const ops = document.getElementById("loc-ops").value;
+      const query = document.getElementById("loc-query").value;
+      const resultBox = document.getElementById("loc-result");
+      const titleEl = document.getElementById("loc-recommendation");
+      const descEl = document.getElementById("loc-explanation");
+
+      let arch = "";
+      let rationale = "";
+
+      if (latency === "subsecond") {
+        arch = "Kinesis Data Streams + AWS Lambda / Managed Flink";
+        rationale = "Sub-second requirements necessitate stream sharding via Kinesis Data Streams. Managed Flink handles complex stateful stream processing.";
+      } else if (latency === "near-realtime") {
+        arch = "Amazon Kinesis Data Firehose + Amazon S3 (Parquet via Glue Data Catalog)";
+        rationale = "Firehose delivers near-real-time ingestion with zero operational overhead, buffering into micro-batches directly to S3 partitioned storage.";
+      } else {
+        arch = "AWS Glue ETL (Spark Job) + Amazon S3 Standard -> Lifecycle to Glacier";
+        rationale = "Batch pipelines minimize compute costs. Glue serverless Spark jobs execute scheduled transformations with automated schema evolution.";
+      }
+
+      if (query === "warehouse") {
+        arch += " -> Redshift Data Warehouse";
+      } else if (query === "adhoc") {
+        arch += " -> Amazon Athena Serverless SQL";
+      }
+
+      titleEl.textContent = arch;
+      descEl.textContent = rationale;
+      resultBox.style.display = "block";
+    });
+  </script>
+</body>
+</html>
